@@ -1,1 +1,42 @@
-<p>organizations works!</p>
+@if (!organizations()) {
+<p>Loading...</p>
+} @else {
+<section id="tableContainer">
+  <table>
+    <thead>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Created At</th>
+    </thead>
+    <tbody>
+      @for (organization of organizations(); track $index) {
+      <tr>
+        <td>
+          <div id="tableCellContainer">
+            <a routerLink="{{ organization.id }}">
+              {{ organization.id }}
+            </a>
+          </div>
+        </td>
+        <td>
+          <div id="tableCellContainer">
+            <a routerLink="{{ organization.id }}">
+              {{ organization.name }}
+            </a>
+          </div>
+        </td>
+        <td>
+          <div id="tableCellContainer">
+            <a routerLink="{{ organization.id }}">
+              {{ organization.created_at }}
+            </a>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</section>
+<button (click)="logOrgs()">Orgs</button>
+
+}

@@ -1,1 +1,8 @@
-<p>organization: {{organizationId()}}</p>
+@if (organization()) {
+<p>ID: {{ organization()?.id }}</p>
+<p>NAME: {{ organization()?.name }}</p>
+} @else {
+<p>Loading...</p>
+}
+
+<button (click)="logOrgs()">Orgs</button>
