@@ -1,0 +1,48 @@
+@if (!seasons()) {
+    <p>Loading...</p>
+    } @else {
+    <section id="tableContainer">
+      <table>
+        <thead>
+          <th>Id</th>
+          <th>Season Name</th>
+          <th>Category</th>
+          <th>Created At</th>
+        </thead>
+        <tbody>
+          @for (season of seasons(); track $index) {
+          <tr>
+            <td>
+              <div id="tableCellContainer">
+                <!-- <a routerLink="{{ organization.id }}"> -->
+                  {{ season.id }}
+                <!-- </a> -->
+              </div>
+            </td>
+            <td>
+              <div id="tableCellContainer">
+                <!-- <a routerLink="{{ organization.id }}"> -->
+                  {{ season.seasonName }}
+                <!-- </a> -->
+              </div>
+            </td>
+            <td>
+                <div id="tableCellContainer">
+                  <!-- <a routerLink="{{ organization.id }}"> -->
+                    {{ season.categoryName }}
+                  <!-- </a> -->
+                </div>
+              </td>
+            <td>
+              <div id="tableCellContainer">
+                <!-- <a routerLink="{{ organization.id }}"> -->
+                  {{ season.created_at }}
+                <!-- </a> -->
+              </div>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+}

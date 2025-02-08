@@ -1,8 +1,14 @@
 @if (organization()) {
-<p>ID: {{ organization()?.id }}</p>
-<p>NAME: {{ organization()?.name }}</p>
+<nav>
+    <p>{{ organization()?.id }} - {{ organization()?.name }}</p>
+</nav>
 } @else {
 <p>Loading...</p>
 }
 
-<button (click)="logOrgs()">Orgs</button>
+<hr>
+
+<teams-section [teams]="teams()"></teams-section>
+<hr>
+<seasons-section [seasons]="seasons()"></seasons-section>
+

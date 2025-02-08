@@ -8,6 +8,8 @@ export type DTOGetOrganization = IOrganization;
 
 export type DTOGetTeamsPerOrganization = Array<ITeam>;
 
+export type DTOGetSeasonsPerOrganization = Array<ISeason>
+
 /*
     Models
 */
@@ -26,5 +28,17 @@ export interface ITeam {
   description: string | null;
   logoUrl: string | null;
   categoryId: string;
-  tournamentId: string;
+  categoryName: string
+}
+
+export interface ISeason {
+  id: string;
+  created_at: string;
+  seasonName: string;
+  categoryId: string;
+  categoryName: string
+  tournamentId: string
+  regularPhaseId: string
+  playoffId: string
+  seasonId: string
 }

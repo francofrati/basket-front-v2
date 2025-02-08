@@ -1,21 +1,23 @@
 import { Component, Input, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrganizationsStore } from '../../stores/organizations/organizations.store';
-import { IOrganization } from '../../services/basketAPI/basket-api.types';
+import { IOrganization, ISeason, ITeam } from '../../services/basketAPI/basket-api.types';
 import { IOrganizations } from '../../stores/organizations/organizations.store.types';
 import { BasketAPIService } from '../../services/basketAPI/basket-api.service';
 import { EMPTY, catchError } from 'rxjs';
+import { TeamsSectionComponent } from "./components/teams-section/teams-section.component";
+import { SeasonsSectionComponent } from "./components/seasons-section/seasons-section.component";
 
 @Component({
   selector: 'app-organization',
   standalone: true,
-  imports: [],
+  imports: [TeamsSectionComponent, SeasonsSectionComponent],
   providers: [BasketAPIService],
   templateUrl: './organization.component.html',
   styleUrl: './organization.component.css',
 })
 export class OrganizationComponent implements OnInit {
-  constructor(private basketAPI: BasketAPIService) {}
+  constructor(private basketAPI: BasketAPIService) { }
 
   @Input() organizationId = '';
 
@@ -27,10 +29,12 @@ export class OrganizationComponent implements OnInit {
       : null
   );
 
+  teams = signal<Array<ITeam> | null | undefined>(null)
+  seasons = signal<Array<ISeason> | null | undefined>(null)
+
   logOrgs() {
     console.log(this.organizationsStore.organizations());
   }
-
   ngOnInit(): void {
     const organizationId = this.organizationId;
 
@@ -57,10 +61,89 @@ export class OrganizationComponent implements OnInit {
           this.organizationsStore.organizations.update((organizations) => {
             return {
               ...organizations,
-              [organizationId]: organization,
+              [organizationId]: {
+                ...organizations[organizationId],
+                ...organization
+              },
             };
           });
         });
     }
+
+
+    if (organization) {
+      const teams = organization.teams
+      if (teams) {
+        this.teams.set(teams)
+      } else {
+        this.basketAPI
+          .getTeamsPerOrganization(organizationId)
+          .pipe(
+            catchError((err) => {
+              console.log(err);
+              alert(err?.message);
+              return EMPTY;
+            })
+          )
+          .subscribe((teams) => {
+            this.teams.set(teams);
+            this.organizationsStore.updateOrganization(organizationId, { teams: teams });
+          });
+      }
+    } else {
+      this.basketAPI
+        .getTeamsPerOrganization(organizationId)
+        .pipe(
+          catchError((err) => {
+            console.log(err);
+            alert(err?.message);
+            return EMPTY;
+          })
+        )
+        .subscribe((teams) => {
+          this.teams.set(teams);
+          this.organizationsStore.updateOrganization(organizationId, { teams: teams });
+        });
+    }
+
+
+    if (organization) {
+      const seasons = organization.seasons
+      if (seasons) {
+        this.seasons.set(seasons)
+      } else {
+        this.basketAPI
+          .getSeasonsPerOrganization(organizationId)
+          .pipe(
+            catchError((err) => {
+              console.log(err);
+              alert(err?.message);
+              return EMPTY;
+            })
+          )
+          .subscribe((seasons) => {
+            this.seasons.set(seasons);
+            this.organizationsStore.updateOrganization(organizationId, { seasons: seasons });
+          });
+      }
+    } else {
+      this.basketAPI
+        .getSeasonsPerOrganization(organizationId)
+        .pipe(
+          catchError((err) => {
+            console.log(err);
+            alert(err?.message);
+            return EMPTY;
+          })
+        )
+        .subscribe((seasons) => {
+          this.seasons.set(seasons);
+          this.organizationsStore.updateOrganization(organizationId, { seasons: seasons });
+        });
+    }
+
+
+
+
   }
 }

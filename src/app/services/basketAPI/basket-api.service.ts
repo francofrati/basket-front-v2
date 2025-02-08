@@ -8,6 +8,7 @@ import { Injectable, inject, isDevMode } from '@angular/core';
 import {
   DTOGetOrganization,
   DTOGetOrganizations,
+  DTOGetSeasonsPerOrganization,
   DTOGetTeamsPerOrganization,
 } from './basket-api.types';
 
@@ -35,5 +36,9 @@ export class BasketAPIService {
     );
   }
 
-  constructor() {}
+  getSeasonsPerOrganization(organizationId: string) {
+    return this.http.get<DTOGetSeasonsPerOrganization>(this.baseUrl + '/organizations/' + organizationId + '/seasons')
+  }
+
+  constructor() { }
 }

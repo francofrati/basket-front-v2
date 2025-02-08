@@ -1,0 +1,49 @@
+@if (!teams()) {
+    <p>Loading...</p>
+    } @else {
+    <section id="tableContainer">
+    
+      <table>
+        <thead>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Created At</th>
+        </thead>
+        <tbody>
+          @for (team of teams(); track $index) {
+          <tr>
+            <td>
+              <div id="tableCellContainer">
+                <!-- <a routerLink="{{ organization.id }}"> -->
+                  {{ team.id }}
+                <!-- </a> -->
+              </div>
+            </td>
+            <td>
+              <div id="tableCellContainer">
+                <!-- <a routerLink="{{ organization.id }}"> -->
+                  {{ team.name }}
+                <!-- </a> -->
+              </div>
+            </td>
+            <td>
+                <div id="tableCellContainer">
+                  <!-- <a routerLink="{{ organization.id }}"> -->
+                    {{ team.categoryName }}
+                  <!-- </a> -->
+                </div>
+              </td>
+            <td>
+              <div id="tableCellContainer">
+                <!-- <a routerLink="{{ organization.id }}"> -->
+                  {{ team.created_at }}
+                <!-- </a> -->
+              </div>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+}
