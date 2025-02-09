@@ -1,5 +1,8 @@
 @if (organization()) {
 <nav>
+    <button id="backButton">
+        <a [routerLink]="['/organization']" >Organizations</a>
+    </button>
     <p>{{ organization()?.id }} - {{ organization()?.name }}</p>
 </nav>
 } @else {

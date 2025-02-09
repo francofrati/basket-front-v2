@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, inject, signal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { OrganizationsStore } from '../../stores/organizations/organizations.store';
 import { IOrganization, ISeason, ITeam } from '../../services/basketAPI/basket-api.types';
 import { IOrganizations } from '../../stores/organizations/organizations.store.types';
@@ -11,7 +11,7 @@ import { SeasonsSectionComponent } from "./components/seasons-section/seasons-se
 @Component({
   selector: 'app-organization',
   standalone: true,
-  imports: [TeamsSectionComponent, SeasonsSectionComponent],
+  imports: [TeamsSectionComponent, SeasonsSectionComponent, RouterLink],
   providers: [BasketAPIService],
   templateUrl: './organization.component.html',
   styleUrl: './organization.component.css',
@@ -32,9 +32,6 @@ export class OrganizationComponent implements OnInit {
   teams = signal<Array<ITeam> | null | undefined>(null)
   seasons = signal<Array<ISeason> | null | undefined>(null)
 
-  logOrgs() {
-    console.log(this.organizationsStore.organizations());
-  }
   ngOnInit(): void {
     const organizationId = this.organizationId;
 
