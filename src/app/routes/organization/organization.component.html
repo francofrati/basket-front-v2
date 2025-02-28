@@ -1,17 +1,17 @@
 @if (organization()) {
-<nav>
-    <button id="backButton">
-        <a [routerLink]="['/organization']" >Organizations</a>
-    </button>
-    <p>{{ organization()?.id }} - {{ organization()?.name }}</p>
-</nav>
+    <nav class="font_quicksand shadow">
+        <button id="backButton">
+            <a [routerLink]="['/organization']">{{"<"}}</a>
+        </button>
+        <img class="w-[40px]" src="{{organization()?.logoUrl ?? 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png'}}" alt="">
+        <p>{{ organization()?.name }}</p>
+    </nav>
 } @else {
-<p>Loading...</p>
+    <p>Loading...</p>
 }
-
-<hr>
-
-<teams-section [teams]="teams()"></teams-section>
-<hr>
-<seasons-section [seasons]="seasons()"></seasons-section>
-
+<div class="flex flex-col justify-start pt-10 gap-10">
+    <seasons-section [seasons]="seasons()"></seasons-section>
+    <hr class="mx-10 text-gray-300"/>
+    <teams-section [teams]="teams()"></teams-section>
+    
+</div>

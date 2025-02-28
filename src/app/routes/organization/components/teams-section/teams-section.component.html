@@ -1,49 +1,46 @@
 @if (!teams()) {
     <p>Loading...</p>
-    } @else {
-    <section id="tableContainer">
-    
-      <table>
-        <thead>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Created At</th>
-        </thead>
-        <tbody>
-          @for (team of teams(); track $index) {
-          <tr>
-            <td>
-              <div id="tableCellContainer">
-                <!-- <a routerLink="{{ organization.id }}"> -->
-                  {{ team.id }}
-                <!-- </a> -->
-              </div>
-            </td>
-            <td>
-              <div id="tableCellContainer">
-                <!-- <a routerLink="{{ organization.id }}"> -->
-                  {{ team.name }}
-                <!-- </a> -->
-              </div>
-            </td>
-            <td>
-                <div id="tableCellContainer">
-                  <!-- <a routerLink="{{ organization.id }}"> -->
-                    {{ team.categoryName }}
-                  <!-- </a> -->
-                </div>
-              </td>
-            <td>
-              <div id="tableCellContainer">
-                <!-- <a routerLink="{{ organization.id }}"> -->
-                  {{ team.created_at }}
-                <!-- </a> -->
-              </div>
-            </td>
-          </tr>
-          }
-        </tbody>
-      </table>
+} @else {
+    <section id="tableContainer" class="shadow">
+        <table class="font_quicksand text-[#626363]">
+            <thead>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Category</th>
+                <!-- <th>Created At</th> -->
+            </thead>
+            <tbody>
+                @for (team of teams(); track $index) {
+                    <tr class="font_quicksand text-[#626363]">
+                        <td>
+                            <div id="tableCellContainer" class="justify-center ">
+                                <!-- <a routerLink="{{ organization.id }}"> -->
+                                {{ team.id }}
+                                <!-- </a> -->
+                            </div>
+                        </td>
+                        <td>
+                            <div id="tableCellContainer" class="pl-3 justify-start border-l border-r border-[#00000029]">
+                                <!-- <a routerLink="{{ organization.id }}"> -->
+                                {{ team.name }}
+                                <!-- </a> -->
+                            </div>
+                        </td>
+                        <td>
+                            <div id="tableCellContainer" class="justify-center border-[#00000029]">
+                                <!-- <a routerLink="{{ organization.id }}"> -->
+                                {{ team.categoryName }}
+                                <!-- </a> -->
+                            </div>
+                        </td>
+                        <!-- <td>
+                            <div id="tableCellContainer">                               
+                                {{ team.created_at }}
+                            </div>
+                        </td> -->
+                    </tr>
+                }
+            </tbody>
+        </table>
     </section>
 }

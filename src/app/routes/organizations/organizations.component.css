@@ -1,45 +1,45 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 table {
-  border-collapse: collapse;
-  width: 100%;
-  height: auto;
-  font-family: "Open Sans", serif;
+    border-collapse: collapse;
+    width: 100%;
+    height: auto;
+    font-family: 'Open Sans', serif;
 }
 tr {
-  border: 1px solid black;
-  cursor: pointer;
-  transition-duration: 0.1s;
-  transition-timing-function: ease-in-out;
+    border: 1px solid black;
+    cursor: pointer;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
 }
 tr:hover {
-  background-color: rgb(224, 224, 224);
+    background-color: rgb(224, 224, 224);
 }
 thead {
-  border: 1px solid black;
+    border: 1px solid black;
 }
 th {
-  text-align: center;
+    text-align: center;
 }
 td {
-  border: 1px solid black;
+    border: 1px solid black;
 }
 
 #tableCellContainer a {
-  width: 100%;
-  text-align: center;
-  outline: none;
-  text-decoration: none;
-  color: black;
+    width: 100%;
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+    color: black;
 }
 #tableCellContainer {
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
 }
 #tableContainer {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
