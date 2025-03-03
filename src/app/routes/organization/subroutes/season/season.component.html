@@ -1,0 +1,28 @@
+@if (!dates()) {
+    <p>Loading...</p>
+} @else {
+    <section class="bg-white">
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Start</th>
+                <th>End</th>
+            </thead>
+            <tbody>
+                @for (date of dates(); track $index) {
+                    <tr>
+                        <td>
+                            {{ date.dateName }}
+                        </td>
+                        <td>
+                            {{ date.startDate }}
+                        </td>
+                        <td>
+                            {{ date.endDate }}
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+}

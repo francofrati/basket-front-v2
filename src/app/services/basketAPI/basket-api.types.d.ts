@@ -10,6 +10,8 @@ export type DTOGetTeamsPerOrganization = Array<ITeam>
 
 export type DTOGetSeasonsPerOrganization = Array<ISeason>
 
+export type DTOGetDatesPerRegularPhase = Array<IDate>
+
 /*
     Models
 */
@@ -42,4 +44,13 @@ export interface ISeason {
     regularPhaseId: string
     playoffId: string
     seasonId: string
+    dates: Array<IDate>
+}
+
+export interface IDate {
+    dateId: string
+    dateName: string
+    startDate: string
+    endDate: string
+    index: string
 }

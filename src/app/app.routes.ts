@@ -24,4 +24,13 @@ export const routes: Routes = [
             )
         },
     },
+    {
+        path: 'organization/:organizationId/season/:seasonId',
+        pathMatch: 'full',
+        loadComponent: () => {
+            return import(
+                './routes/organization/subroutes/season/season.component'
+            ).then((m) => m.SeasonComponent)
+        },
+    },
 ]
