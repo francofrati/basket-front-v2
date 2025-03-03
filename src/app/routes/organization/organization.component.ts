@@ -1,21 +1,19 @@
-import { Component, Input, OnInit, inject, signal } from '@angular/core'
-import { ActivatedRoute, Router, RouterLink } from '@angular/router'
+import { Component, Input, OnInit, Signal, WritableSignal, computed, inject, signal } from '@angular/core'
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router'
 import { OrganizationsStore } from '../../stores/organizations/organizations.store'
 import {
     IOrganization,
     ISeason,
     ITeam,
 } from '../../services/basketAPI/basket-api.types'
-import { IOrganizations } from '../../stores/organizations/organizations.store.types'
+import { IOrganizations, OrganizationId } from '../../stores/organizations/organizations.store.types'
 import { BasketAPIService } from '../../services/basketAPI/basket-api.service'
 import { EMPTY, catchError } from 'rxjs'
-import { TeamsSectionComponent } from './components/teams-section/teams-section.component'
-import { SeasonsSectionComponent } from './components/seasons-section/seasons-section.component'
 
 @Component({
     selector: 'app-organization',
     standalone: true,
-    imports: [TeamsSectionComponent, SeasonsSectionComponent, RouterLink],
+    imports: [RouterLink, RouterOutlet],
     providers: [BasketAPIService],
     templateUrl: './organization.component.html',
     styleUrl: './organization.component.css',
@@ -27,11 +25,13 @@ export class OrganizationComponent implements OnInit {
 
     organizationsStore = inject(OrganizationsStore)
 
-    organization = signal<IOrganizations | null>(
-        this.organizationsStore.organizations()[this.organizationId]
-            ? this.organizationsStore.organizations()[this.organizationId]
-            : null
-    )
+    organizations: Signal<Record<OrganizationId, IOrganizations>> = computed(() => this.organizationsStore.organizations())
+    //@ts-ignore
+    organizationsArr: Signal<Array<IOrganization>> = computed(() => this.organizationsStore.organizationsArr())
+
+    organization: WritableSignal<IOrganizations | null> = signal<IOrganizations | null>(null)
+
+    readOrg: Signal<any> = computed(() => this.organizationsStore.organizations()[this.organizationId])
 
     teams = signal<Array<ITeam> | null | undefined>(null)
     seasons = signal<Array<ISeason> | null | undefined>(null)
@@ -39,10 +39,10 @@ export class OrganizationComponent implements OnInit {
     ngOnInit(): void {
         const organizationId = this.organizationId
 
-        const organization = this.organizationsStore.organizations()[
+        const organization = this.organizations()[
             this.organizationId
         ]
-            ? this.organizationsStore.organizations()[this.organizationId]
+            ? this.organizations()[this.organizationId]
             : null
 
         if (organization) {

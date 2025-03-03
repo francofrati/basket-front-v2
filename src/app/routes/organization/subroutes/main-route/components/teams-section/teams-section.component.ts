@@ -7,12 +7,11 @@ import {
     OnInit,
     signal,
 } from '@angular/core'
-import { OrganizationComponent } from '../../organization.component'
-import { OrganizationsStore } from '../../../../stores/organizations/organizations.store'
-import { ITeam } from '../../../../services/basketAPI/basket-api.types'
-import { BasketAPIService } from '../../../../services/basketAPI/basket-api.service'
 import { catchError, EMPTY } from 'rxjs'
 import { ActivatedRoute } from '@angular/router'
+import { BasketAPIService } from '../../../../../../services/basketAPI/basket-api.service'
+import { OrganizationsStore } from '../../../../../../stores/organizations/organizations.store'
+import { ITeam } from '../../../../../../services/basketAPI/basket-api.types'
 
 @Component({
     selector: 'teams-section',

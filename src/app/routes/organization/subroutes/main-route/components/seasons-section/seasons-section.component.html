@@ -13,7 +13,7 @@
                     <tr class="font_quicksand text-[#626363]">
                         <td>
                             <div id="tableCellContainer" class="justify-center">
-                                <a routerLink="{{ 'season/' + season.id }}">
+                                <a [routerLink]="['',{ outlets: { organizationSubroutes: ['organization','1','season',season.id] } }]">
                                     {{ season.id }}
                                 </a>
                             </div>

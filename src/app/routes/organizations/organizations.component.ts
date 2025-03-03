@@ -1,10 +1,11 @@
-import { Component, OnInit, inject, signal } from '@angular/core'
+import { Component, OnInit, Signal, computed, inject, signal } from '@angular/core'
 import { BasketAPIService } from '../../services/basketAPI/basket-api.service'
 import { EMPTY, catchError } from 'rxjs'
 import { IOrganization } from '../../services/basketAPI/basket-api.types'
 import { DatePipe } from '@angular/common'
 import { RouterLink } from '@angular/router'
 import { OrganizationsStore } from '../../stores/organizations/organizations.store'
+import { TOrganizationStore } from '../../stores/organizations/organizations.store.types'
 @Component({
     selector: 'app-organizations',
     standalone: true,
@@ -17,11 +18,14 @@ export class OrganizationsComponent implements OnInit {
     constructor(
         private basketAPI: BasketAPIService,
         private datePipe: DatePipe // private organizationsStore: OrganizationsStore
-    ) {}
+    ) { }
 
     organizationsStore = inject(OrganizationsStore)
 
-    organizations = signal<Array<IOrganization> | null>(null)
+    cleanStore = () => { this.organizationsStore.cleanStore() }
+
+    // @ts-ignore
+    organizations: Signal<Array<IOrganization>> = computed(() => this.organizationsStore.organizationsArr())
 
     logOrgs() {
         console.log(this.organizationsStore.organizations())
@@ -39,15 +43,15 @@ export class OrganizationsComponent implements OnInit {
             )
             .subscribe((organizations) => {
                 //Setting locally for the component
-                this.organizations.set(
-                    organizations.map((organization) => ({
-                        ...organization,
-                        created_at: this.datePipe.transform(
-                            organization.created_at,
-                            'short'
-                        ) as string,
-                    }))
-                )
+                // this.organizations.set(
+                //     organizations.map((organization) => ({
+                //         ...organization,
+                //         created_at: this.datePipe.transform(
+                //             organization.created_at,
+                //             'short'
+                //         ) as string,
+                //     }))
+                // )
 
                 //Setting in the store
                 this.organizationsStore.organizations.set(
@@ -59,11 +63,11 @@ export class OrganizationsComponent implements OnInit {
                                     current.id
                                 ]
                                     ? {
-                                          ...this.organizationsStore.organizations()[
-                                              current.id
-                                          ],
-                                          ...current,
-                                      }
+                                        ...this.organizationsStore.organizations()[
+                                        current.id
+                                        ],
+                                        ...current,
+                                    }
                                     : current,
                         }
                     }, {})

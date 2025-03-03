@@ -1,6 +1,9 @@
 @if (!organizations()) {
     <p>Loading...</p>
 } @else {
+
+    <button (click)="cleanStore()">Clean Store</button>
+
     <section id="tableContainer">
         <table>
             <thead>

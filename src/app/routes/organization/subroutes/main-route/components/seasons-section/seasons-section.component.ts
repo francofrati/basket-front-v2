@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core'
-import { ISeason } from '../../../../services/basketAPI/basket-api.types'
+import { ISeason } from '../../../../../../services/basketAPI/basket-api.types'
 import { RouterLink } from '@angular/router'
 
 @Component({
