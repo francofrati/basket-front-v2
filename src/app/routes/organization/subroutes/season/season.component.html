@@ -1,7 +1,9 @@
 @if (!dates()) {
     <p>Loading...</p>
 } @else {
-    <section class="bg-white flex shadow rounded-[10px] w-[80%] mx-auto items-center justify-center">
+    <section
+        class="bg-white flex shadow rounded-[10px] w-[80%] mx-auto items-center justify-center"
+    >
         <table class="w-full font_quicksand text-[#626363]">
             <thead>
                 <th>Name</th>
@@ -10,15 +12,32 @@
             </thead>
             <tbody>
                 @for (date of dates(); track $index) {
-                    <tr>
+                    <tr class="hover:bg-gray-100 cursor-pointer">
                         <td class="text-center">
-                            {{ date.dateName }}
+                            <a
+                                class="w-full flex text-center items-center justify-center"
+                                routerLink="{{ 'dates/' + date.dateId }}"
+                            >
+                                {{ date.dateName }}
+                            </a>
                         </td>
-                        <td class="text-center pl-3 justify-start border-l border-r border-[#00000029]">
-                            {{ date.startDate }}
+                        <td
+                            class="text-center pl-3 justify-start border-l border-r border-[#00000029]"
+                        >
+                            <a
+                                class="w-full flex text-center items-center justify-center"
+                                routerLink="{{ 'dates/' + date.dateId }}"
+                            >
+                                {{ date.startDate }}</a
+                            >
                         </td>
                         <td class="text-center">
-                            {{ date.endDate }}
+                            <a
+                                class="w-full flex text-center items-center justify-center"
+                                routerLink="{{ 'dates/' + date.dateId }}"
+                            >
+                                {{ date.endDate }}
+                            </a>
                         </td>
                     </tr>
                 }
