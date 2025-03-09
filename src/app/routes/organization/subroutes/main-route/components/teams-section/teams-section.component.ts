@@ -24,6 +24,8 @@ export class TeamsSectionComponent {
     organizationStore = inject(OrganizationsStore)
     teams = input.required<Array<ITeam> | null | undefined>()
 
+    @Input({ required: true }) setAddTeamModal: any = () => { }
+
     log() {
         console.log('child', this.organizationStore.organizations())
     }

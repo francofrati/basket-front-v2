@@ -1,8 +1,14 @@
 @if (!seasons()) {
     <p>Loading...</p>
 } @else {
-    <section id="tableContainer" class="shadow">
-        <table class="font_quicksand text-[#626363]">
+    <section id="tableContainer" class="shadow font_quicksand">
+        <section class="flex justify-between w-full px-1 items-center mb-2">
+            <span class="font-medium text-[#626363]">
+                Seasons
+            </span>
+            <button (click)="setAddSeasonModal(true)" class="border cursor-pointer border-slate-300 text-slate-800 font-medium shadow rounded-md py-1 px-4">Add</button>
+        </section>
+        <table class="font_quicksand text-[#626363] border-t-1">
             <thead>
                 <th>Id</th>
                 <th>Season Name</th>

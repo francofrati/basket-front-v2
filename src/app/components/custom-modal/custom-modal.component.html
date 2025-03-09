@@ -1,0 +1,5 @@
+<div (click)="closeModal($event)" class="z-99 w-dvw h-dvh bg-[#00000035] absolute top-0 left-0 grid content-center justify-center">
+    <div (click)="avoidUnexpectedClose($event)" class="z-100">
+        <ng-content />
+    </div>
+</div>

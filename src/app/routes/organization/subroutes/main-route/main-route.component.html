@@ -1,5 +1,11 @@
 <div class="flex flex-col justify-start pt-10 gap-10">
-    <seasons-section [seasons]="seasons()"></seasons-section>
+    <seasons-section [setAddSeasonModal]="addSeasonModal.set" [seasons]="seasons()"></seasons-section>
     <hr class="mx-10 text-gray-300"/>
-    <teams-section [teams]="teams()"></teams-section>    
+    <teams-section [teams]="teams()" [setAddTeamModal]="addTeamModal.set"></teams-section>    
 </div>
+@if (addSeasonModal()) {
+    <season-form [setAddSeasonModal]="addSeasonModal.set" [organizationId]="organizationId"/>
+}
+@if (addTeamModal()) {
+    <team-form [organizationId]="organizationId" [setAddTeamModal]="addTeamModal.set"></team-form>
+}

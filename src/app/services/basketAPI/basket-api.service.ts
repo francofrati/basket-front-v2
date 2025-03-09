@@ -6,6 +6,7 @@ import {
 } from '@angular/common/http'
 import { Injectable, inject, isDevMode } from '@angular/core'
 import {
+    DTOGetCategoriesPerOrganization,
     DTOGetDatesPerRegularPhase,
     DTOGetOrganization,
     DTOGetOrganizations,
@@ -48,12 +49,16 @@ export class BasketAPIService {
     getDatesPerRegularPhase(regularPhaseId: string, organizationId: string) {
         return this.http.get<DTOGetDatesPerRegularPhase>(
             this.baseUrl +
-                '/organizations/' +
-                organizationId +
-                '/regularPhase/' +
-                regularPhaseId +
-                '/dates'
+            '/organizations/' +
+            organizationId +
+            '/regularPhase/' +
+            regularPhaseId +
+            '/dates'
         )
     }
-    constructor() {}
+
+    getCategoriesPerOrganization(organizationId: string) {
+        return this.http.get<DTOGetCategoriesPerOrganization>(this.baseUrl + '/organizations/' + organizationId + '/categories')
+    }
+    constructor() { }
 }

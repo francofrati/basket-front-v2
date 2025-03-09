@@ -11,6 +11,6 @@ import { OrganizationsStore } from './stores/organizations/organizations.store'
     styleUrl: './app.component.css',
 })
 export class AppComponent {
-    constructor() {}
+    constructor() { }
     title = 'basket-front-v2'
 }

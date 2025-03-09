@@ -1,4 +1,4 @@
-import { Component, inject, Input, signal } from '@angular/core';
+import { Component, inject, Input, signal, WritableSignal } from '@angular/core';
 import { BasketAPIService } from '../../../../services/basketAPI/basket-api.service';
 import { OrganizationsStore } from '../../../../stores/organizations/organizations.store';
 import { IOrganizations } from '../../../../stores/organizations/organizations.store.types';
@@ -6,11 +6,13 @@ import { ISeason, ITeam } from '../../../../services/basketAPI/basket-api.types'
 import { catchError, EMPTY } from 'rxjs';
 import { TeamsSectionComponent } from './components/teams-section/teams-section.component';
 import { SeasonsSectionComponent } from './components/seasons-section/seasons-section.component';
+import { SeasonFormComponent } from "./components/season-form/season-form.component";
+import { TeamFormComponent } from './components/team-form/team-form.component';
 
 @Component({
   selector: 'app-main-route',
   standalone: true,
-  imports: [TeamsSectionComponent, SeasonsSectionComponent],
+  imports: [TeamsSectionComponent, SeasonsSectionComponent, SeasonFormComponent, TeamFormComponent],
   providers: [BasketAPIService],
   templateUrl: './main-route.component.html',
   styleUrl: './main-route.component.css'
@@ -31,6 +33,16 @@ export class MainRouteComponent {
 
   teams = signal<Array<ITeam> | null | undefined>(null)
   seasons = signal<Array<ISeason> | null | undefined>(null)
+
+  addSeasonModal = signal<boolean>(false)
+  addTeamModal = signal<boolean>(false)
+
+  openAddSeasonModal() {
+    return this.addSeasonModal.set
+  }
+  closeAddSeasonModal() {
+    this.addSeasonModal.set(false)
+  }
 
   ngOnInit(): void {
     const organizationId = this.organizationId
