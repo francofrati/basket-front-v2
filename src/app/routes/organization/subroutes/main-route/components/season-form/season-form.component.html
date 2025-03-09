@@ -1,0 +1,170 @@
+<custom-modal [setModal]="setAddSeasonModal">
+    <div class="bg-white rounded-lg shadow font_quicksand overflow-hidden">
+        <section class="w-[90dvw] max-w-[600px] p-6 max-h-[80dvh] overflow-y-scroll">
+            <section>
+                <h2 class="font-bold text-xl">
+                    Add Season
+                </h2>
+                <hr class=" text-slate-300">
+            </section>
+            <form class="pt-6">
+                <section class="flex flex-col gap-2">
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Season Name:</span>
+                        <input class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Season Start Date:</span>
+                        <input type="date" class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Season End Date:</span>
+                        <input type="date" class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                </section>
+                <section>
+                    @if (categories().length) {
+                    <section for="" class="pt-4">
+                        <hr class="text-slate-300 mb-2">
+                        <div>Select Category:</div>
+                        @for (category of categories(); track $index) {
+                        <label [htmlFor]="[category.description]" class="flex gap-1">
+                            <input name="categories" type="radio" [id]="[category.description]" />
+                            {{category.name}}
+                        </label>
+                        }
+                    </section>
+                    }
+                </section>
+                <section>
+                    @if (teams().length) {
+                    <section for="" class="pt-4">
+                        <hr class="text-slate-300 mb-2">
+                        <div>Select Teams:</div>
+                        <section class="grid grid-cols-3 ">
+                            @for (team of teams(); track $index) {
+                            <label [htmlFor]="[team.name]" class="flex items-center gap-1">
+                                <input name="categories" type="checkbox" [value]="[team.name]" [id]="[team.name]" />
+                                {{team.name}}
+                            </label>
+                            }
+                        </section>
+                    </section>
+                    }
+                </section>
+                <hr class="text-slate-300 my-2">
+                <section class="flex flex-col gap-2">
+                    <section for="" class="flex flex-col gap-1">
+                        <span>Regular Phase:</span>
+                        <section class="flex flex-col gap-1 ">
+
+                            <label for="regularPhase">
+                                <input type="radio" name="regular" id="regularPhase" />
+
+                                Yes
+
+                            </label>
+                            <label for="noRegularPhase">
+                                <input type="radio" name="regular" id="noRegularPhase" />
+                                No</label>
+                        </section>
+                    </section>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Regular Phase Name:</span>
+                        <input class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Regular Phase Description:</span>
+                        <input class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Regular Phase Start:</span>
+                        <input type="date" class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Regular Phase End:</span>
+                        <input type="date" class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Regular Phase Total Dates:</span>
+                        <input type="number" class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Regular Phase Dates Duration:</span>
+                        <section class="flex flex-col gap-1 ">
+
+                            <label for="regularPhaseDate1Week">
+                                <input type="radio" name="dateDuration" id="regularPhaseDate1Week" />
+
+                                1 Week
+
+                            </label>
+                            <label for="regularPhaseDate2Week">
+                                <input type="radio" name="dateDuration" id="regularPhaseDate2Week" />
+                                2 Weeks</label>
+                        </section>
+                    </label>
+                </section>
+                <hr class="text-slate-300 my-2">
+                <section class="flex flex-col gap-2">
+                    <section for="" class="flex flex-col gap-1">
+                        <span>Playoffs:</span>
+                        <section class="flex flex-col gap-1 ">
+
+                            <label for="playoffsYes">
+                                <input type="radio" name="playoffs" id="playoffsYes" />
+
+                                Yes
+
+                            </label>
+                            <label for="playoffsNo">
+                                <input type="radio" name="playoffs" id="playoffsNo" />
+                                No</label>
+                        </section>
+                    </section>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Playoffs Name:</span>
+                        <input class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Playoffs Description:</span>
+                        <input class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Playoffs Start:</span>
+                        <input type="date" class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Playoffs End:</span>
+                        <input type="date" class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Playoffs Total Rounds:</span>
+                        <input type="number" class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Playoffs Best Of:</span>
+                        <section class="flex flex-col gap-1 ">
+
+                            <label for="bestOf1">
+                                <input type="radio" name="playoffsBestOf" id="bestOf1" />
+
+                                1
+
+                            </label>
+                            <label for="bestOf3">
+                                <input type="radio" name="playoffsBestOf" id="bestOf3" />
+                                3</label>
+                            <label for="bestOf5">
+                                <input type="radio" name="playoffsBestOf" id="bestOf5" />
+                                5</label>
+                            <label for="bestOf7">
+                                <input type="radio" name="playoffsBestOf" id="bestOf7" />
+                                7</label>
+                        </section>
+                    </label>
+                </section>
+            </form>
+        </section>
+    </div>
+</custom-modal>

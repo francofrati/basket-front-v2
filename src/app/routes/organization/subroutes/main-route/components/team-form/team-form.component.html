@@ -1,0 +1,45 @@
+<custom-modal [setModal]="setAddTeamModal">
+    <div class="bg-white rounded-lg shadow font_quicksand overflow-hidden">
+        <section class="w-[90dvw] max-w-[600px] p-6 max-h-[80dvh] overflow-y-scroll">
+            <section>
+                <h2 class="font-bold text-xl">
+                    Add Team
+                </h2>
+                <hr class=" text-slate-300">
+            </section>
+            <form class="pt-6">
+                <section class="flex flex-col gap-2">
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Team Name:</span>
+                        <input class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Team Description:</span>
+                        <input class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                    <label for="" class="flex flex-col gap-1">
+                        <span>Team Logo:</span>
+                        <input class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                    </label>
+                </section>
+                <section>
+                    @if (categories().length) {
+                        <section for="" class="pt-4">
+                            <hr class="text-slate-300 mb-2">
+                            <div>Select Category:</div>
+                        @for (category of categories(); track $index) {
+                        <label [htmlFor]="[category.description]" class="flex gap-1">
+                            <input name="categories" type="radio" [id]="[category.description]" />
+                            {{category.name}}
+                        </label>
+                    }
+                </section>
+                    }
+                </section>
+                
+                
+            </form>
+        </section>
+    </div>
+</custom-modal>
+    

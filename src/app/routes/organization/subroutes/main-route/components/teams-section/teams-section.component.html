@@ -2,6 +2,12 @@
     <p>Loading...</p>
 } @else {
     <section id="tableContainer" class="shadow">
+        <section class="flex justify-between w-full font_quicksand items-center mb-2 px-1">
+            <span class="font-medium text-[#626363]">
+                Teams
+            </span>
+            <button (click)="setAddTeamModal(true)" class="border cursor-pointer border-slate-300 text-slate-800 font-medium shadow rounded-md py-1 px-4">Add</button>
+        </section>
         <table class="font_quicksand text-[#626363]">
             <thead>
                 <th>Id</th>
@@ -20,8 +26,9 @@
                             </div>
                         </td>
                         <td>
-                            <div id="tableCellContainer" class="pl-3 justify-start border-l border-r border-[#00000029]">
+                            <div id="tableCellContainer" class="pl-3 flex items-center py-2 gap-4 justify-start border-l border-r border-[#00000029]">
                                 <!-- <a routerLink="{{ organization.id }}"> -->
+                                    <img class="h-[40px] rounded-full" src="{{team?.logoUrl ?? 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png'}}" alt="">
                                 {{ team.name }}
                                 <!-- </a> -->
                             </div>

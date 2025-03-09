@@ -1,11 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
 table {
     border-collapse: collapse;
     width: 100%;
     min-width: 500px;
     height: auto;
-    font-family: 'Open Sans', serif;
     border: 2px solid white;
 }
 
