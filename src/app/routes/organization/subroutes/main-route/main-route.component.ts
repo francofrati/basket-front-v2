@@ -44,6 +44,25 @@ export class MainRouteComponent {
     this.addSeasonModal.set(false)
   }
 
+  getTeams(organizationId: string) {
+    this.basketAPI
+      .getTeamsPerOrganization(organizationId)
+      .pipe(
+        catchError((err) => {
+          console.log(err)
+          alert(err?.message)
+          return EMPTY
+        })
+      )
+      .subscribe((teams) => {
+        this.teams.set(teams)
+        this.organizationsStore.updateOrganization(
+          organizationId,
+          { teams: teams }
+        )
+      })
+  }
+
   ngOnInit(): void {
     const organizationId = this.organizationId
 
@@ -86,22 +105,7 @@ export class MainRouteComponent {
       if (teams) {
         this.teams.set(teams)
       } else {
-        this.basketAPI
-          .getTeamsPerOrganization(organizationId)
-          .pipe(
-            catchError((err) => {
-              console.log(err)
-              alert(err?.message)
-              return EMPTY
-            })
-          )
-          .subscribe((teams) => {
-            this.teams.set(teams)
-            this.organizationsStore.updateOrganization(
-              organizationId,
-              { teams: teams }
-            )
-          })
+        this.getTeams(organizationId)
       }
     } else {
       this.basketAPI

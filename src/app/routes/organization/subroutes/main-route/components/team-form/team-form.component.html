@@ -11,15 +11,15 @@
                 <section class="flex flex-col gap-2">
                     <label for="" class="flex flex-col gap-1">
                         <span>Team Name:</span>
-                        <input class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                        <input [formControl]="teamName" class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1"/>
                     </label>
                     <label for="" class="flex flex-col gap-1">
                         <span>Team Description:</span>
-                        <input class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                        <input [formControl]="teamDescription" class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
                     </label>
                     <label for="" class="flex flex-col gap-1">
                         <span>Team Logo:</span>
-                        <input class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
+                        <input [formControl]="teamLogoUrl" class="border-slate-300 rounded-sm w-full border outline-none px-2 py-1" />
                     </label>
                 </section>
                 <section>
@@ -29,15 +29,17 @@
                             <div>Select Category:</div>
                         @for (category of categories(); track $index) {
                         <label [htmlFor]="[category.description]" class="flex gap-1">
-                            <input name="categories" type="radio" [id]="[category.description]" />
+                            <input name="categories" type="radio" [checked]="selectedCategory()===category.id" [id]="[category.description]"  [defaultChecked]="false" (click)="selectCategory(category.id)" [value]="category.id"/>
                             {{category.name}}
                         </label>
                     }
                 </section>
                     }
                 </section>
-                
-                
+                <section class="flex w-full flex-row-reverse mt-2">
+                    <button class="cursor-pointer border-2 border-slate-300 font-semibold p-2 rounded-lg" (click)="addTeam($event)">Submit</button>
+
+                </section>
             </form>
         </section>
     </div>

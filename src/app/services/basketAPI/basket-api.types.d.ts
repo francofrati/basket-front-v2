@@ -14,6 +14,13 @@ export type DTOGetDatesPerRegularPhase = Array<IDate>
 
 export type DTOGetCategoriesPerOrganization = Array<ICategory>
 
+export interface DTOAddTeam {
+    teamName: string
+    teamDescription: string | null
+    teamLogoUrl: string | null
+    categoryId: string
+}
+
 /*
     Models
 */

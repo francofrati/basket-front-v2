@@ -6,6 +6,7 @@ import {
 } from '@angular/common/http'
 import { Injectable, inject, isDevMode } from '@angular/core'
 import {
+    DTOAddTeam,
     DTOGetCategoriesPerOrganization,
     DTOGetDatesPerRegularPhase,
     DTOGetOrganization,
@@ -59,6 +60,10 @@ export class BasketAPIService {
 
     getCategoriesPerOrganization(organizationId: string) {
         return this.http.get<DTOGetCategoriesPerOrganization>(this.baseUrl + '/organizations/' + organizationId + '/categories')
+    }
+
+    addTeam(body: DTOAddTeam) {
+        return this.http.post<string>(this.baseUrl + '/teams/add', body)
     }
     constructor() { }
 }
